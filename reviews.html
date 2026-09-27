@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Parent feedback and review submission page for Lots A Love Daycare in Leesburg, Virginia." />
+  <meta name="theme-color" content="#fff7fb" />
+  <title>Reviews | Lots A Love Daycare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Lots A Love Daycare home">
+        <span class="brand-mark">♥</span>
+        <span class="brand-text"><strong>Lots A Love</strong><small>Daycare</small></span>
+      </a>
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html#about">About</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="reviews.html" aria-current="page">Reviews</a>
+        <a class="nav-cta" href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="review-hero">
+      <div class="container review-hero-grid">
+        <div>
+          <div class="eyebrow">Parent Reviews & Feedback</div>
+          <h1>Kind words from our daycare community</h1>
+          <p class="hero-text">Feedback helps families understand the experience at Lots A Love Daycare and helps us continue creating a warm, caring place for children.</p>
+          <a class="btn btn-primary" href="#leave-review">Leave Feedback</a>
+        </div>
+        <div class="review-hero-photo"><img src="images/celebration.jpeg" alt="Smiling child during a happy daycare moment" /></div>
+      </div>
+    </section>
+
+    <section class="section review-wall">
+      <div class="container">
+        <div class="section-heading centered">
+          <div class="eyebrow">Review Highlights</div>
+          <h2>What families may want to share</h2>
+          <p>These are sample review cards for layout only. Replace them with real parent feedback after you receive permission to publish it.</p>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <span class="sample-tag">Sample review wording</span>
+            <blockquote>“A warm, welcoming environment where my child feels comfortable, cared for, and excited to come back.”</blockquote>
+            <p class="reviewer">— Parent/Guardian</p>
+          </article>
+          <article class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <span class="sample-tag">Sample review wording</span>
+            <blockquote>“We appreciate the learning activities, home-like setting, meals, outdoor play, and consistent communication.”</blockquote>
+            <p class="reviewer">— Parent/Guardian</p>
+          </article>
+          <article class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <span class="sample-tag">Sample review wording</span>
+            <blockquote>“The children have a nice balance of learning, creative activities, reading, games, and play throughout the day.”</blockquote>
+            <p class="reviewer">— Parent/Guardian</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section feedback-section" id="leave-review">
+      <div class="container feedback-grid">
+        <div>
+          <div class="eyebrow">Share Your Experience</div>
+          <h2>Leave feedback for Lots A Love Daycare</h2>
+          <p>Parents and guardians can send feedback directly to Nazi. Reviews can be approved before being added publicly to the website.</p>
+          <div class="feedback-note"><strong>Why approval first?</strong><span>It helps protect family privacy and makes sure no child’s personal information is posted by mistake.</span></div>
+          <img class="feedback-photo" src="images/water-play.jpeg" alt="Children enjoying supervised outdoor play" />
+        </div>
+
+        <form class="contact-form review-form" id="reviewForm">
+          <div class="form-title"><span>★</span><div><strong>Submit a Review</strong><small>Your feedback will be emailed for review before publishing.</small></div></div>
+          <label>Your Name<input type="text" id="reviewName" required></label>
+          <label>Your Email<input type="email" id="reviewEmail" required></label>
+          <label>Relationship to Child<select id="reviewRelationship" required><option value="">Select one</option><option>Parent</option><option>Guardian</option><option>Family Member</option></select></label>
+          <label>Rating<select id="reviewRating" required><option value="">Choose a rating</option><option>5 stars</option><option>4 stars</option><option>3 stars</option><option>2 stars</option><option>1 star</option></select></label>
+          <label>Your Feedback<textarea id="reviewMessage" rows="7" required placeholder="Share what you appreciated about your experience..."></textarea></label>
+          <label class="consent-line"><input type="checkbox" id="reviewConsent" required> I give permission for this review to be considered for publication on the Lots A Love Daycare website.</label>
+          <button class="btn btn-primary full" type="submit">Send My Feedback</button>
+          <small class="form-note">Submitting opens your email app with your review prepared for Nazi.</small>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div><div class="footer-brand">♥ Lots A Love Daycare</div><p>Licensed home-based childcare in Potomac Station, Leesburg, Virginia.</p></div>
+      <div><strong>Contact</strong><p><a href="tel:+17038889118">703-888-9118</a><br><a href="mailto:nazi157ranjbar@yahoo.com">nazi157ranjbar@yahoo.com</a></p></div>
+      <div><strong>Back to Site</strong><p><a href="index.html">Home</a><br><a href="index.html#gallery">Gallery</a><br><a href="index.html#contact">Enrollment</a></p></div>
+    </div>
+    <div class="container copyright">© <span id="year"></span> Lots A Love Daycare. All rights reserved.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
