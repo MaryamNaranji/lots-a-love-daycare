@@ -1,9 +1,5 @@
 const { escapeHtml, siteUrl, sendEmail, supabase, uuid, json } = require('../../lib/server');
 
-function isSchemaError(error) {
-  return /column|schema cache|could not find/i.test(String(error && error.message || error));
-}
-
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return json(res, 405, { ok: false, error: 'Method not allowed' });
 
@@ -21,45 +17,29 @@ module.exports = async function handler(req, res) {
     if (!name || !email || !relationship || !review || !consent || !Number.isInteger(rating) || rating < 1 || rating > 5) {
       return json(res, 400, { ok: false, error: 'Please complete all required review fields.' });
     }
-    if (!/^\S+@\S+\.\S+$/.test(email)) return json(res, 400, { ok: false, error: 'Please enter a valid email address.' });
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      return json(res, 400, { ok: false, error: 'Please enter a valid email address.' });
+    }
 
     const id = uuid();
     const token = uuid();
 
-    try {
-      await supabase('reviews', {
-        method: 'POST',
-        headers: { Prefer: 'return=minimal' },
-        body: JSON.stringify({
-          id,
-          name,
-          email,
-          relationship,
-          rating,
-          review,
-          consent,
-          status: 'pending',
-          approval_token: token
-        })
-      });
-    } catch (error) {
-      if (!isSchemaError(error)) throw error;
-      await supabase('reviews', {
-        method: 'POST',
-        headers: { Prefer: 'return=minimal' },
-        body: JSON.stringify({
-          id,
-          reviewer_name: name,
-          reviewer_email: email,
-          reviewer_type: relationship,
-          rating,
-          feedback: review,
-          permission_to_publish: consent,
-          status: 'pending',
-          moderation_token: token
-        })
-      });
-    }
+    await supabase('reviews', {
+      method: 'POST',
+      headers: { Prefer: 'return=minimal' },
+      body: JSON.stringify({
+        id,
+        reviewer_name: name,
+        email,
+        reviewer_type: relationship,
+        rating,
+        feedback: review,
+        consent,
+        status: 'pending',
+        approval_token: token
+      })
+    });
 
     const origin = siteUrl(req);
     const approveUrl = `${origin}/api/reviews/moderate?id=${encodeURIComponent(id)}&token=${encodeURIComponent(token)}&action=approve`;
@@ -92,13 +72,29 @@ module.exports = async function handler(req, res) {
       </div>`;
 
     await Promise.all([
-      sendEmail({ to: adminEmail, subject: `Review awaiting approval from ${name}`, html: adminHtml, replyTo: email }),
-      sendEmail({ to: email, subject: 'Your Lots A Love Daycare review was submitted', html: reviewerHtml, replyTo: adminEmail })
+      sendEmail({
+        to: adminEmail,
+        subject: `Review awaiting approval from ${name}`,
+        html: adminHtml,
+        replyTo: email
+      }),
+      sendEmail({
+        to: email,
+        subject: 'Your Lots A Love Daycare review was submitted',
+        html: reviewerHtml,
+        replyTo: adminEmail
+      })
     ]);
 
-    return json(res, 200, { ok: true, message: 'Your review was submitted to Nazi for approval.' });
+    return json(res, 200, {
+      ok: true,
+      message: 'Your review was submitted to Nazi for approval.'
+    });
   } catch (error) {
     console.error(error);
-    return json(res, 500, { ok: false, error: 'We could not submit the review right now. Please try again or contact the daycare directly.' });
+    return json(res, 500, {
+      ok: false,
+      error: 'We could not submit the review right now. Please try again or contact the daycare directly.'
+    });
   }
 };
