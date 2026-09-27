@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Lots A Love Daycare is a licensed home-based daycare in Potomac Station, Leesburg, VA, serving children ages 0-12 with meals, learning activities, play, and after-school care." />
+  <meta name="theme-color" content="#fff7f2" />
   <title>Lots A Love Daycare | Leesburg, VA</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,13 +16,14 @@
     <div class="container nav-wrap">
       <a class="brand" href="#home" aria-label="Lots A Love Daycare home">
         <span class="brand-mark">♥</span>
-        <span>Lots A Love Daycare</span>
+        <span class="brand-text"><strong>Lots A Love</strong><small>Daycare</small></span>
       </a>
       <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#about">About</a>
         <a href="#programs">Programs</a>
         <a href="#daily-life">Daily Life</a>
+        <a href="#gallery">Gallery</a>
         <a href="#hours">Hours</a>
         <a class="nav-cta" href="#contact">Contact</a>
       </nav>
@@ -30,100 +32,134 @@
 
   <main>
     <section class="hero" id="home">
+      <div class="hero-dots hero-dots-one" aria-hidden="true"></div>
+      <div class="hero-dots hero-dots-two" aria-hidden="true"></div>
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">Licensed Home-Based Daycare • Leesburg, Virginia</div>
-          <h1>Where Little Hearts <span>Learn, Play & Grow</span></h1>
-          <p class="hero-text">Warm, nurturing childcare for children from infancy through age 12 in the Potomac Station community of Leesburg.</p>
-          <div class="hero-badges">
-            <span>♥ Ages 0–12</span>
-            <span>✓ CPR Certified</span>
-            <span>☀ Mon–Fri, 8 AM–5 PM</span>
+          <div class="eyebrow">Licensed Home Daycare • Leesburg, Virginia</div>
+          <h1>Big love for <span>little learners.</span></h1>
+          <p class="hero-text">A warm, playful, home-based daycare where children from infancy through age 12 can feel safe, cared for, and excited to learn every day.</p>
+          <div class="trust-row">
+            <div><strong>Licensed</strong><span>Home Daycare</span></div>
+            <div><strong>CPR</strong><span>Certified</span></div>
+            <div><strong>0–12</strong><span>Years Old</span></div>
           </div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="tel:+17038889118">Call 703-888-9118</a>
             <a class="btn btn-secondary" href="#contact">Ask About Enrollment</a>
           </div>
         </div>
-        <div class="hero-card">
-          <div class="heart-large">♥</div>
-          <h2>Care made with love</h2>
-          <p>Safe routines, caring attention, nutritious meals, creative play, and learning activities in a comfortable home environment.</p>
-          <div class="mini-card">
-            <strong>Meals Included</strong>
-            <span>Breakfast • Lunch • 2 Snacks</span>
-          </div>
+
+        <div class="hero-photo-wrap" aria-label="Happy children at Lots A Love Daycare">
+          <div class="hero-photo hero-photo-main"><img src="images/siblings-baby.jpg" alt="Smiling children together" /></div>
+          <div class="hero-photo hero-photo-small top"><img src="images/zahra.jpg" alt="Newborn baby resting" /></div>
+          <div class="hero-photo hero-photo-small bottom"><img src="images/playground.jpeg" alt="Child enjoying outdoor play" /></div>
+          <div class="floating-note"><span>♥</span><div><strong>Care made with love</strong><small>Every child. Every day.</small></div></div>
         </div>
       </div>
-      <div class="wave" aria-hidden="true"></div>
+      <div class="hero-strip">
+        <div class="container strip-grid">
+          <span>☀ Monday–Friday • 8 AM–5 PM</span>
+          <span>🍎 Breakfast, Lunch & 2 Snacks Included</span>
+          <span>🎒 After-School Care Available</span>
+        </div>
+      </div>
     </section>
 
     <section class="section" id="about">
-      <div class="container two-col">
-        <div>
-          <div class="eyebrow">About Us</div>
-          <h2>A loving place to feel safe, happy, and encouraged</h2>
-          <p>Lots A Love Daycare is a licensed home-based daycare located in Potomac Station, Leesburg, Virginia. We care for children from birth through age 12 in a warm, family-style environment where every child can learn, play, explore, and build confidence.</p>
-          <p>Our goal is to give parents peace of mind while providing children with dependable routines, age-appropriate learning, creative activities, nutritious food, and plenty of positive attention.</p>
+      <div class="container split-feature">
+        <div class="photo-collage">
+          <img class="collage-main" src="images/playroom.jpeg" alt="Bright and spacious daycare playroom" />
+          <img class="collage-small" src="images/sandbox.jpeg" alt="Children playing together in a sandbox" />
+          <div class="collage-badge"><strong>Potomac Station</strong><span>Leesburg, VA 20176</span></div>
         </div>
-        <div class="feature-stack">
-          <div class="feature"><span class="icon">✓</span><div><strong>Licensed Home Daycare</strong><p>Professional home-based childcare in Leesburg.</p></div></div>
-          <div class="feature"><span class="icon">♥</span><div><strong>CPR Certified</strong><p>Safety and responsible care are a priority.</p></div></div>
-          <div class="feature"><span class="icon">☀</span><div><strong>Full Day + After-School Care</strong><p>Flexible care for younger children and school-age students.</p></div></div>
+        <div class="about-copy">
+          <div class="eyebrow">Welcome to Lots A Love</div>
+          <h2>A happy little place that feels like home</h2>
+          <p>Lots A Love Daycare is a licensed home-based daycare in Potomac Station, Leesburg. We provide dependable, nurturing care in a comfortable setting where children can learn, play, create, and build confidence.</p>
+          <p>Our days are filled with caring routines, age-appropriate learning, creative activities, outdoor fun, nutritious meals, and plenty of positive attention.</p>
+          <div class="check-grid">
+            <span>✓ Licensed home daycare</span>
+            <span>✓ CPR certified</span>
+            <span>✓ Ages 0–12</span>
+            <span>✓ After-school care</span>
+            <span>✓ Meals & snacks included</span>
+            <span>✓ Learning through play</span>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section soft" id="programs">
       <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Programs</div>
+        <div class="section-heading centered">
+          <div class="eyebrow">Our Programs</div>
           <h2>Care for every stage of childhood</h2>
-          <p>Age-appropriate attention and activities for infants, toddlers, preschoolers, and school-age children.</p>
+          <p>Gentle care for babies, engaging learning for little ones, and a welcoming place for school-age children after class.</p>
         </div>
         <div class="cards">
-          <article class="card"><div class="card-icon">🍼</div><h3>Infant Care</h3><p>Gentle, attentive care with feeding, rest, comfort, and supervised play in a calm home environment.</p></article>
-          <article class="card"><div class="card-icon">🧸</div><h3>Toddler Care</h3><p>Play, movement, language-building, music, simple learning activities, and supportive daily routines.</p></article>
-          <article class="card"><div class="card-icon">🎨</div><h3>Preschool Learning</h3><p>Circle time, letters, numbers, colors, shapes, books, puzzles, art, coloring, games, and hands-on learning.</p></article>
-          <article class="card"><div class="card-icon">🎒</div><h3>After-School Care</h3><p>A comfortable place for school-age children to unwind, read, play, complete activities, and enjoy a snack.</p></article>
+          <article class="card card-coral"><div class="card-icon">🍼</div><h3>Infant Care</h3><p>Gentle, attentive care with feeding, rest, comfort, tummy time, and supervised play.</p></article>
+          <article class="card card-mint"><div class="card-icon">🧸</div><h3>Toddler Care</h3><p>Movement, music, language-building, social play, and simple hands-on learning.</p></article>
+          <article class="card card-yellow"><div class="card-icon">🎨</div><h3>Preschool Learning</h3><p>Circle time, letters, numbers, colors, shapes, books, puzzles, art, and games.</p></article>
+          <article class="card card-blue"><div class="card-icon">🎒</div><h3>After-School Care</h3><p>A comfortable place for school-age children to relax, read, play, and enjoy a snack.</p></article>
         </div>
       </div>
     </section>
 
     <section class="section" id="daily-life">
-      <div class="container">
-        <div class="section-heading">
+      <div class="container daily-grid">
+        <div>
           <div class="eyebrow">Learning & Play</div>
-          <h2>Busy little hands, curious little minds</h2>
-          <p>Our days include a balanced mix of learning, creativity, movement, social interaction, rest, and play.</p>
+          <h2>Busy hands. Curious minds. Happy hearts.</h2>
+          <p class="section-intro">We balance early learning with creativity, movement, friendship, and fun so children stay engaged throughout the day.</p>
+          <div class="activity-grid">
+            <div><span>🔤</span><strong>Alphabet & Words</strong></div>
+            <div><span>🔢</span><strong>Numbers & Counting</strong></div>
+            <div><span>🌈</span><strong>Colors & Shapes</strong></div>
+            <div><span>📚</span><strong>Story Time</strong></div>
+            <div><span>🎨</span><strong>Arts & Crafts</strong></div>
+            <div><span>🧩</span><strong>Puzzles & Games</strong></div>
+            <div><span>⭕</span><strong>Circle Time</strong></div>
+            <div><span>🛝</span><strong>Indoor & Outdoor Play</strong></div>
+          </div>
         </div>
-        <div class="activity-grid">
-          <div>🔤 <strong>Alphabet Learning</strong></div>
-          <div>🔢 <strong>Numbers & Counting</strong></div>
-          <div>🌈 <strong>Colors & Shapes</strong></div>
-          <div>📚 <strong>Story & Reading Time</strong></div>
-          <div>🎨 <strong>Arts & Crafts</strong></div>
-          <div>🖍️ <strong>Coloring</strong></div>
-          <div>🧩 <strong>Puzzles</strong></div>
-          <div>🎲 <strong>Games & Learning Activities</strong></div>
-          <div>🛝 <strong>Playtime</strong></div>
-          <div>⭕ <strong>Circle Time</strong></div>
+        <div class="daily-photo-card">
+          <img src="images/water-play.jpeg" alt="Children enjoying supervised outdoor water play" />
+          <div class="photo-caption"><strong>Learning through play</strong><span>Indoor and outdoor activities keep every day fresh and fun.</span></div>
         </div>
       </div>
     </section>
 
     <section class="section meals-section">
       <div class="container meal-box">
-        <div>
+        <div class="meal-copy">
           <div class="eyebrow">Meals Included</div>
-          <h2>Fuel for growing children</h2>
-          <p>Children receive breakfast, lunch, and two snacks during the daycare day.</p>
+          <h2>Good food for growing kids</h2>
+          <p>Breakfast, lunch, and two snacks are included during the daycare day.</p>
         </div>
         <div class="meal-list">
-          <span>🍎 Breakfast</span>
-          <span>🥪 Lunch</span>
-          <span>🍓 Morning Snack</span>
-          <span>🥛 Afternoon Snack</span>
+          <span><b>☀</b> Breakfast</span>
+          <span><b>🥪</b> Lunch</span>
+          <span><b>🍓</b> Morning Snack</span>
+          <span><b>🥛</b> Afternoon Snack</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery-section" id="gallery">
+      <div class="container">
+        <div class="section-heading centered">
+          <div class="eyebrow">A Peek Inside</div>
+          <h2>Little moments, big memories</h2>
+          <p>A glimpse of the warm, playful environment and happy moments children enjoy at Lots A Love Daycare.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-tall"><img src="images/birthday.jpeg" alt="Child enjoying a birthday celebration" /></figure>
+          <figure><img src="images/baby-bouncer.jpg" alt="Baby resting comfortably" /></figure>
+          <figure><img src="images/kids-together.png" alt="Children smiling together" /></figure>
+          <figure class="gallery-wide"><img src="images/playroom.jpeg" alt="Daycare playroom filled with toys and learning areas" /></figure>
+          <figure><img src="images/newborn.png" alt="Newborn baby resting" /></figure>
+          <figure><img src="images/celebration.jpeg" alt="Child smiling during a celebration" /></figure>
         </div>
       </div>
     </section>
@@ -135,12 +171,12 @@
           <h2>Convenient weekday care in Leesburg</h2>
           <p>Serving families in Potomac Station and surrounding Leesburg communities.</p>
           <div class="location-card">
-            <strong>📍 Potomac Station</strong>
-            <span>Leesburg, VA 20176</span>
-            <small>Exact home address can be shared directly with enrolled or visiting families.</small>
+            <span class="location-pin">📍</span>
+            <div><strong>Potomac Station</strong><span>Leesburg, VA 20176</span><small>Exact home address is shared directly with visiting or enrolled families.</small></div>
           </div>
         </div>
         <div class="schedule-card">
+          <div class="schedule-top"><span>Weekly Schedule</span><b>8 AM–5 PM</b></div>
           <div class="schedule-row"><span>Monday</span><strong>8:00 AM – 5:00 PM</strong></div>
           <div class="schedule-row"><span>Tuesday</span><strong>8:00 AM – 5:00 PM</strong></div>
           <div class="schedule-row"><span>Wednesday</span><strong>8:00 AM – 5:00 PM</strong></div>
@@ -154,19 +190,22 @@
 
     <section class="section contact-section" id="contact">
       <div class="container contact-grid">
-        <div>
+        <div class="contact-copy">
           <div class="eyebrow">Contact & Enrollment</div>
-          <h2>We’d love to hear from your family</h2>
-          <p>Contact Nazi to ask about availability, enrollment, age groups, schedules, or to learn more about Lots A Love Daycare.</p>
+          <h2>Come grow with us ♥</h2>
+          <p>Contact Nazi to ask about current openings, enrollment, age groups, schedules, or to learn more about Lots A Love Daycare.</p>
           <div class="contact-items">
-            <a href="tel:+17038889118"><span>📞</span><div><small>Call</small><strong>703-888-9118</strong></div></a>
+            <a href="tel:+17038889118"><span>📞</span><div><small>Call or text</small><strong>703-888-9118</strong></div></a>
             <a href="mailto:nazi157ranjbar@yahoo.com"><span>✉️</span><div><small>Email</small><strong>nazi157ranjbar@yahoo.com</strong></div></a>
           </div>
         </div>
         <form class="contact-form" action="mailto:nazi157ranjbar@yahoo.com" method="post" enctype="text/plain">
+          <div class="form-title"><span>♥</span><div><strong>Enrollment Inquiry</strong><small>Tell us a little about your childcare needs.</small></div></div>
           <label>Parent/Guardian Name<input type="text" name="Parent Name" required></label>
-          <label>Phone Number<input type="tel" name="Phone" required></label>
-          <label>Email Address<input type="email" name="Email" required></label>
+          <div class="form-row">
+            <label>Phone Number<input type="tel" name="Phone" required></label>
+            <label>Email Address<input type="email" name="Email" required></label>
+          </div>
           <label>Child's Age<input type="text" name="Child Age" placeholder="Example: 2 years old" required></label>
           <label>Message<textarea name="Message" rows="5" placeholder="Tell us what kind of care you are looking for."></textarea></label>
           <button class="btn btn-primary full" type="submit">Send Enrollment Inquiry</button>
@@ -178,8 +217,8 @@
 
   <footer class="footer">
     <div class="container footer-grid">
-      <div><strong>♥ Lots A Love Daycare</strong><p>Licensed home-based childcare in Leesburg, Virginia.</p></div>
-      <div><strong>Hours</strong><p>Mon–Fri • 8 AM–5 PM<br>Closed weekends & U.S. holidays</p></div>
+      <div><div class="footer-brand">♥ Lots A Love Daycare</div><p>Licensed home-based childcare in Leesburg, Virginia.</p></div>
+      <div><strong>Hours</strong><p>Monday–Friday • 8 AM–5 PM<br>Closed weekends & U.S. holidays</p></div>
       <div><strong>Contact</strong><p><a href="tel:+17038889118">703-888-9118</a><br><a href="mailto:nazi157ranjbar@yahoo.com">nazi157ranjbar@yahoo.com</a></p></div>
     </div>
     <div class="container copyright">© <span id="year"></span> Lots A Love Daycare. All rights reserved.</div>
