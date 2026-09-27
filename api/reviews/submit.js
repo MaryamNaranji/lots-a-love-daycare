@@ -1,4 +1,8 @@
-const { env, escapeHtml, siteUrl, sendEmail, supabase, uuid, json } = require('../../lib/server');
+const { escapeHtml, siteUrl, sendEmail, supabase, uuid, json } = require('../../lib/server');
+
+function isSchemaError(error) {
+  return /column|schema cache|could not find/i.test(String(error && error.message || error));
+}
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return json(res, 405, { ok: false, error: 'Method not allowed' });
@@ -21,21 +25,41 @@ module.exports = async function handler(req, res) {
 
     const id = uuid();
     const token = uuid();
-    await supabase('reviews', {
-      method: 'POST',
-      headers: { Prefer: 'return=minimal' },
-      body: JSON.stringify({
-        id,
-        name,
-        email,
-        relationship,
-        rating,
-        review,
-        consent,
-        status: 'pending',
-        approval_token: token
-      })
-    });
+
+    try {
+      await supabase('reviews', {
+        method: 'POST',
+        headers: { Prefer: 'return=minimal' },
+        body: JSON.stringify({
+          id,
+          name,
+          email,
+          relationship,
+          rating,
+          review,
+          consent,
+          status: 'pending',
+          approval_token: token
+        })
+      });
+    } catch (error) {
+      if (!isSchemaError(error)) throw error;
+      await supabase('reviews', {
+        method: 'POST',
+        headers: { Prefer: 'return=minimal' },
+        body: JSON.stringify({
+          id,
+          reviewer_name: name,
+          reviewer_email: email,
+          reviewer_type: relationship,
+          rating,
+          feedback: review,
+          permission_to_publish: consent,
+          status: 'pending',
+          moderation_token: token
+        })
+      });
+    }
 
     const origin = siteUrl(req);
     const approveUrl = `${origin}/api/reviews/moderate?id=${encodeURIComponent(id)}&token=${encodeURIComponent(token)}&action=approve`;
