@@ -221,3 +221,11 @@ p { margin: 0 0 16px; }
   .review-hero { padding: 70px 0; }
   .review-hero-photo img { height: 300px; }
 }
+
+/* Working form status + spam trap */
+.honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important; }
+.form-status { min-height: 24px; margin-top: 12px; font-weight: 700; line-height: 1.45; }
+.form-status.pending { color: #6f6270; }
+.form-status.success { color: #237a57; background: #e9f8f0; border: 1px solid #cdeedc; border-radius: 12px; padding: 12px 14px; }
+.form-status.error { color: #a8334b; background: #fff0f3; border: 1px solid #ffd3dc; border-radius: 12px; padding: 12px 14px; }
+.contact-form button:disabled { opacity: .65; cursor: wait; }

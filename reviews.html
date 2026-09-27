@@ -45,29 +45,12 @@
     <section class="section review-wall">
       <div class="container">
         <div class="section-heading centered">
-          <div class="eyebrow">Review Highlights</div>
-          <h2>What families may want to share</h2>
-          <p>These are sample review cards for layout only. Replace them with real parent feedback after you receive permission to publish it.</p>
+          <div class="eyebrow">Parent Reviews</div>
+          <h2>Kind words from our daycare families</h2>
+          <p>Only reviews approved by Lots A Love Daycare are displayed here.</p>
         </div>
-        <div class="testimonial-grid">
-          <article class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <span class="sample-tag">Sample review wording</span>
-            <blockquote>“A warm, welcoming environment where my child feels comfortable, cared for, and excited to come back.”</blockquote>
-            <p class="reviewer">— Parent/Guardian</p>
-          </article>
-          <article class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <span class="sample-tag">Sample review wording</span>
-            <blockquote>“We appreciate the learning activities, home-like setting, meals, outdoor play, and consistent communication.”</blockquote>
-            <p class="reviewer">— Parent/Guardian</p>
-          </article>
-          <article class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <span class="sample-tag">Sample review wording</span>
-            <blockquote>“The children have a nice balance of learning, creative activities, reading, games, and play throughout the day.”</blockquote>
-            <p class="reviewer">— Parent/Guardian</p>
-          </article>
+        <div class="testimonial-grid" id="approvedReviews">
+          <article class="testimonial-card"><p class="reviewer">Loading approved reviews…</p></article>
         </div>
       </div>
     </section>
@@ -83,15 +66,17 @@
         </div>
 
         <form class="contact-form review-form" id="reviewForm">
-          <div class="form-title"><span>★</span><div><strong>Submit a Review</strong><small>Your feedback will be emailed for review before publishing.</small></div></div>
+          <div class="form-title"><span>★</span><div><strong>Submit a Review</strong><small>Your feedback will be sent securely for review before publishing.</small></div></div>
           <label>Your Name<input type="text" id="reviewName" required></label>
           <label>Your Email<input type="email" id="reviewEmail" required></label>
           <label>Relationship to Child<select id="reviewRelationship" required><option value="">Select one</option><option>Parent</option><option>Guardian</option><option>Family Member</option></select></label>
-          <label>Rating<select id="reviewRating" required><option value="">Choose a rating</option><option>5 stars</option><option>4 stars</option><option>3 stars</option><option>2 stars</option><option>1 star</option></select></label>
+          <label>Rating<select id="reviewRating" required><option value="">Choose a rating</option><option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option></select></label>
           <label>Your Feedback<textarea id="reviewMessage" rows="7" required placeholder="Share what you appreciated about your experience..."></textarea></label>
           <label class="consent-line"><input type="checkbox" id="reviewConsent" required> I give permission for this review to be considered for publication on the Lots A Love Daycare website.</label>
-          <button class="btn btn-primary full" type="submit">Send My Feedback</button>
-          <small class="form-note">Submitting opens your email app with your review prepared for Nazi.</small>
+          <input type="text" id="reviewWebsite" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-primary full" type="submit" id="reviewSubmit">Send My Feedback</button>
+          <div class="form-status" id="reviewStatus" role="status" aria-live="polite"></div>
+          <small class="form-note">Your review will be emailed to Nazi for approval. You will also receive a confirmation email.</small>
         </form>
       </div>
     </section>

@@ -228,8 +228,10 @@
           </div>
           <label>Email<input type="email" id="parentEmail" required></label>
           <label>Message<textarea id="parentMessage" rows="5" placeholder="Tell us about the care you are looking for."></textarea></label>
-          <button class="btn btn-primary full" type="submit">Send Enrollment Inquiry</button>
-          <small class="form-note">This button opens your email app with the inquiry prepared for Lots A Love Daycare.</small>
+          <input type="text" id="enrollmentWebsite" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-primary full" type="submit" id="enrollmentSubmit">Send Enrollment Inquiry</button>
+          <div class="form-status" id="enrollmentStatus" role="status" aria-live="polite"></div>
+          <small class="form-note">Your inquiry will be emailed directly to Nazi. You will also receive a confirmation email.</small>
         </form>
       </div>
     </section>
