@@ -1,21 +1,32 @@
 const { escapeHtml, supabase } = require('../../lib/server');
 
+async function findReview(id, token) {
+  try {
+    const rows = await supabase(`reviews?id=eq.${encodeURIComponent(id)}&approval_token=eq.${encodeURIComponent(token)}&select=id,name,status`);
+    if (Array.isArray(rows) && rows.length === 1) return { row: rows[0], tokenField: 'approval_token', nameField: 'name' };
+  } catch (error) {}
+
+  const rows = await supabase(`reviews?id=eq.${encodeURIComponent(id)}&moderation_token=eq.${encodeURIComponent(token)}&select=id,reviewer_name,status`);
+  if (Array.isArray(rows) && rows.length === 1) return { row: rows[0], tokenField: 'moderation_token', nameField: 'reviewer_name' };
+  return null;
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).send('Method not allowed');
   try {
     const { id, token, action } = req.query || {};
     if (!id || !token || !['approve', 'ignore'].includes(action)) return res.status(400).send('Invalid review link.');
 
-    const rows = await supabase(`reviews?id=eq.${encodeURIComponent(id)}&approval_token=eq.${encodeURIComponent(token)}&select=id,name,status`);
-    if (!Array.isArray(rows) || rows.length !== 1) return res.status(404).send('This review link is invalid or has already been used.');
+    const found = await findReview(id, token);
+    if (!found) return res.status(404).send('This review link is invalid or has already been used.');
 
     const status = action === 'approve' ? 'approved' : 'ignored';
-    await supabase(`reviews?id=eq.${encodeURIComponent(id)}&approval_token=eq.${encodeURIComponent(token)}`, {
+    await supabase(`reviews?id=eq.${encodeURIComponent(id)}&${found.tokenField}=eq.${encodeURIComponent(token)}`, {
       method: 'PATCH',
       headers: { Prefer: 'return=minimal' },
       body: JSON.stringify({
         status,
-        approval_token: null,
+        [found.tokenField]: null,
         ...(status === 'approved' ? { approved_at: new Date().toISOString() } : {})
       })
     });
