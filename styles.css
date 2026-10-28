@@ -229,3 +229,12 @@ p { margin: 0 0 16px; }
 .form-status.success { color: #237a57; background: #e9f8f0; border: 1px solid #cdeedc; border-radius: 12px; padding: 12px 14px; }
 .form-status.error { color: #a8334b; background: #fff0f3; border: 1px solid #ffd3dc; border-radius: 12px; padding: 12px 14px; }
 .contact-form button:disabled { opacity: .65; cursor: wait; }
+
+
+/* Show the complete photos in the daycare gallery */
+#dynamicGallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
