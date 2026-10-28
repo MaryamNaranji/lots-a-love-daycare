@@ -118,3 +118,65 @@ if (approvedReviews) {
       approvedReviews.innerHTML = '<article class="testimonial-card"><p class="reviewer">Reviews are temporarily unavailable. Please try again later.</p></article>';
     });
 }
+
+
+async function loadDaycareGallery() {
+  const gallery = document.getElementById("dynamicGallery");
+  if (!gallery) return;
+
+  const SUPABASE_URL = "https://rbcnqropwclaloeaurxt.supabase.co";
+  const SUPABASE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+
+  const client = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  const { data, error } = await client
+    .from("daycare_gallery")
+    .select("image_path, caption, description, media_type")
+    .eq("published", true)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Gallery loading failed:", error);
+    return;
+  }
+
+  gallery.replaceChildren();
+
+  for (const item of data || []) {
+    const { data: urlData } = client.storage
+      .from("daycare-media")
+      .getPublicUrl(item.image_path);
+
+    const figure = document.createElement("figure");
+    const media = document.createElement(
+      item.media_type === "video" ? "video" : "img"
+    );
+
+    media.src = urlData.publicUrl;
+
+    if (item.media_type === "video") {
+      media.controls = true;
+      media.preload = "metadata";
+    } else {
+      media.alt = item.caption || "Daycare activity";
+      media.loading = "lazy";
+    }
+
+    figure.appendChild(media);
+
+    const caption = document.createElement("figcaption");
+    caption.textContent = [item.caption, item.description]
+      .filter(Boolean)
+      .join(" — ");
+
+    figure.appendChild(caption);
+    gallery.appendChild(figure);
+  }
+}
+
+if (document.getElementById("dynamicGallery")) {
+  loadDaycareGallery().catch(console.error);
+}
