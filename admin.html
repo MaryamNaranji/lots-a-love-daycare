@@ -49,5 +49,44 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       <a href="/">Return to homepage</a>
     </p>
   </main>
+  <script>
+  const loginForm = document.getElementById("login-form");
+  const loginMessage = document.getElementById("login-message");
+
+  loginForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById("admin-email").value.trim();
+    const password = document.getElementById("admin-password").value;
+
+    loginMessage.textContent = "Signing in...";
+
+    const { data, error } =
+      await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+    if (error) {
+      loginMessage.textContent = "Sign in failed. Please check your credentials.";
+      return;
+    }
+
+    const { data: adminRecord, error: adminError } =
+      await supabaseClient
+        .from("daycare_admins")
+        .select("user_id")
+        .eq("user_id", data.user.id)
+        .maybeSingle();
+
+    if (adminError || !adminRecord) {
+      await supabaseClient.auth.signOut();
+      loginMessage.textContent = "This account is not authorized as a daycare administrator.";
+      return;
+    }
+
+    loginMessage.textContent = "Administrator sign-in successful!";
+  });
+</script>
 </body>
 </html>
