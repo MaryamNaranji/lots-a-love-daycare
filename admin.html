@@ -101,6 +101,8 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     }
 
     loginMessage.textContent = "Administrator sign-in successful!";
+    document.getElementById("admin-login").hidden = true;
+document.getElementById("admin-dashboard").hidden = false;
   });
 </script>
 </body>
