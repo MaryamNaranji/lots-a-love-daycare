@@ -147,6 +147,84 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     document.getElementById("admin-login").hidden = true;
 document.getElementById("admin-dashboard").hidden = false;
   });
+
+    
+const galleryForm = document.getElementById("gallery-upload-form");
+const galleryMessage = document.getElementById("gallery-upload-message");
+
+galleryForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const file = document.getElementById("gallery-file").files[0];
+  const title = document.getElementById("gallery-title").value.trim();
+  const description = document.getElementById("gallery-description").value.trim();
+  const published = document.getElementById("gallery-published").checked;
+
+  if (!file || !title) {
+    galleryMessage.textContent = "Please select a file and enter a title.";
+    return;
+  }
+
+  const allowedTypes = [
+    "image/jpeg", "image/png", "image/webp",
+    "video/mp4", "video/webm"
+  ];
+
+  if (!allowedTypes.includes(file.type) || file.size > 50 * 1024 * 1024) {
+    galleryMessage.textContent = "Use a supported photo or video under 50 MB.";
+    return;
+  }
+
+  const { data: sessionData } = await supabaseClient.auth.getUser();
+
+  if (!sessionData.user) {
+    galleryMessage.textContent = "Please sign in again.";
+    return;
+  }
+
+  const { data: adminRecord, error: adminError } = await supabaseClient
+    .from("daycare_admins")
+    .select("user_id")
+    .eq("user_id", sessionData.user.id)
+    .maybeSingle();
+
+  if (adminError || !adminRecord) {
+    galleryMessage.textContent = "Administrator access required.";
+    return;
+  }
+
+  galleryMessage.textContent = "Uploading file...";
+
+  const filePath = `${sessionData.user.id}/${crypto.randomUUID()}-${file.name}`;
+
+  try {
+    const { data, error } = await supabaseClient.storage
+      .from("daycare-media")
+      .upload(filePath, file, {
+        contentType: file.type,
+        upsert: false
+      });
+
+    if (error) throw error;
+
+    galleryMessage.textContent =
+      "File uploaded successfully! Gallery publishing will be connected next.";
+
+    galleryForm.reset();
+
+    console.log("Uploaded gallery file:", {
+      path: data.path,
+      title,
+      description,
+      published
+    });
+
+  } catch (error) {
+    console.error("Gallery upload failed:", error);
+    galleryMessage.textContent = "Upload failed: " + error.message;
+  }
+});
+
 </script>
 </body>
 </html>
