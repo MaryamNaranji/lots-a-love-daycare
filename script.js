@@ -180,3 +180,41 @@ async function loadDaycareGallery() {
 if (document.getElementById("dynamicGallery")) {
   loadDaycareGallery().catch(console.error);
 }
+
+
+/* Click a gallery photo to view it full-screen */
+document.addEventListener("click", (event) => {
+  const photo = event.target.closest(
+    "#dynamicGallery img, .gallery-grid img"
+  );
+
+  if (!photo) return;
+
+  const lightbox = document.createElement("div");
+  lightbox.className = "gallery-lightbox";
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-label", "Full-size gallery photo");
+
+  const image = document.createElement("img");
+  image.src = photo.currentSrc || photo.src;
+  image.alt = photo.alt || "Daycare gallery photo";
+
+  lightbox.appendChild(image);
+  document.body.appendChild(lightbox);
+
+  const previousOverflow = document.body.style.overflow;
+  document.body.style.overflow = "hidden";
+
+  function closeLightbox() {
+    lightbox.remove();
+    document.body.style.overflow = previousOverflow;
+    document.removeEventListener("keydown", handleKeydown);
+  }
+
+  function handleKeydown(e) {
+    if (e.key === "Escape") closeLightbox();
+  }
+
+  lightbox.addEventListener("click", closeLightbox);
+  document.addEventListener("keydown", handleKeydown);
+});
