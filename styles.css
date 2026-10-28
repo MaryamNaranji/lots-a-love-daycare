@@ -285,3 +285,49 @@ p { margin: 0 0 16px; }
   height: auto;
   object-fit: contain;
 }
+
+/* Hide photo titles and descriptions */
+#dynamicGallery figcaption {
+  display: none !important;
+}
+
+/* Keep gallery photos and cards inside their section */
+.gallery-section {
+  position: relative;
+  z-index: 1;
+  background: #fffaf8;
+  padding-bottom: 60px;
+  overflow: visible;
+}
+
+/* Keep the gallery cards neat */
+#dynamicGallery {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0;
+}
+
+#dynamicGallery figure {
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #ffffff;
+  margin: 0;
+  padding: 8px;
+  border-radius: 22px;
+}
+
+/* Prevent photo content from extending past its card */
+#dynamicGallery img {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Keep Parent Feedback visually separate */
+.reviews-preview {
+  position: relative;
+  z-index: 0;
+  clear: both;
+}
