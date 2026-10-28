@@ -125,7 +125,7 @@ async function loadDaycareGallery() {
   if (!gallery) return;
 
   const SUPABASE_URL = "https://rbcnqropwclaloeaurxt.supabase.co";
-  const SUPABASE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+  const SUPABASE_KEY = "sb_publishable_L5Gy0rYzivcSma-ob4Jy2w_UfgiGC5X";
 
   const client = window.supabase.createClient(
     SUPABASE_URL,
