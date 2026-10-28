@@ -206,10 +206,21 @@ galleryForm.addEventListener("submit", async (event) => {
       });
 
     if (error) throw error;
+const { error: galleryDbError } = await supabaseClient
+  .from("daycare_gallery")
+  .insert({
+    image_path: data.path,
+    caption: title,
+    description: description,
+    published: published,
+    media_type: file.type.startsWith("video/") ? "video" : "image"
+  });
 
+if (galleryDbError) {
+  throw new Error("File uploaded, but gallery record could not be saved: " + galleryDbError.message);
+}
     galleryMessage.textContent =
-      "File uploaded successfully! Gallery publishing will be connected next.";
-
+  "Photo or video uploaded and saved to the gallery successfully!";
     galleryForm.reset();
 
     console.log("Uploaded gallery file:", {
