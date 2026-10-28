@@ -53,8 +53,51 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   <p>Manage the daycare website gallery from this secure area.</p>
 
   <div id="gallery-management">
-    <p>Gallery management tools will appear here.</p>
-  </div>
+  <form id="gallery-upload-form">
+    <p>
+      <label for="gallery-file">Choose a photo or video</label>
+      <input
+        type="file"
+        id="gallery-file"
+        accept="image/jpeg,image/png,image/webp,video/mp4,video/webm"
+        required
+      >
+    </p>
+
+    <p>
+      <label for="gallery-title">Title</label>
+      <input
+        type="text"
+        id="gallery-title"
+        placeholder="Example: Arts and Crafts Day"
+        maxlength="100"
+        required
+      >
+    </p>
+
+    <p>
+      <label for="gallery-description">Description</label>
+      <textarea
+        id="gallery-description"
+        placeholder="Describe this activity"
+        rows="3"
+      ></textarea>
+    </p>
+
+    <p>
+      <label>
+        <input type="checkbox" id="gallery-published">
+        Publish on the daycare website
+      </label>
+    </p>
+
+    <button type="submit" id="gallery-upload-button">
+      Upload to Gallery
+    </button>
+
+    <p id="gallery-upload-message" role="status"></p>
+  </form>
+</div>
 
   <button type="button" id="admin-logout">
     Sign Out
