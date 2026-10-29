@@ -409,3 +409,32 @@ p { margin: 0 0 16px; }
   object-fit: contain !important;
   border-radius: 17px !important;
 }
+
+/* Keep all gallery photos inside the Gallery section */
+#gallery {
+  display: flow-root !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding-bottom: 70px !important;
+}
+
+/* Keep the dynamic photo grid in normal page flow */
+#dynamicGallery {
+  position: static !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  margin-bottom: 20px !important;
+}
+
+/* Keep the existing rounded white photo borders */
+#dynamicGallery figure {
+  position: static !important;
+}
+
+/* Prevent the next section from overlapping */
+#gallery + section {
+  clear: both !important;
+  margin-top: 0 !important;
+}
