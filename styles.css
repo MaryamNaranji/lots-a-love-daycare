@@ -386,3 +386,26 @@ p { margin: 0 0 16px; }
 #dynamicGallery figcaption {
   display: none !important;
 }
+
+/* Make gallery photo frames fit the actual pictures */
+#dynamicGallery figure {
+  width: fit-content !important;
+  max-width: 100% !important;
+  justify-self: center !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  border: 6px solid white !important;
+  border-radius: 24px !important;
+  background: white !important;
+  overflow: hidden;
+}
+
+/* Keep entire photos visible without wide side borders */
+#dynamicGallery img {
+  display: block !important;
+  width: auto !important;
+  max-width: 100% !important;
+  height: 340px !important;
+  object-fit: contain !important;
+  border-radius: 17px !important;
+}
